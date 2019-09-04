@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Advection-dominated reactive species transport at fluid interfaces via data-driven Subgrid-scale modeling</title>
+
+		<meta name="description" content="Advection-dominated reactive species transport at fluid interfaces via data-driven Subgrid-scale modeling - presentation Florenz">
+		<meta name="author" content="Dennis Hillenbrand">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background-image="../ECCE_Florenz_2019/pictures/SatapathySmith.png">
+					<h1 style="color:white">Advection-dominated reactive species transport at fluid interfaces via data-driven Subgrid-scale modeling</h1>
+					<p style="color:white">
+						Dennis Hillenbrand, Andre Weiner, Dieter Bothe, Holger Marschall
+					</p>
+						<!--<img width="40%" data-src="../ECCE_Florenz_2019/pictures/SatapathySmith.png"> -->
+				</section>
+
+				<section>
+					<section>
+						<h1>Multiscale problem</h1>
+						<h2> Industrial application </h2>
+						<div class="column" style="float:left; width:60%">
+							<figure>
+							<img width="100%" data-src="../basic_pictures/motivation_multiscaleProblem.png">
+							</figure>
+						</div>
+						<div class="column" style="float:right; width:30%">
+							<br/>
+							Design of bubble column reactors has significant influence on yield and selectivity
+							<br/>
+							<br/>
+							For predictions local phenomena must be understood
+						</div>
+					</section>
+
+					<section>
+						<h1>Multiscale problem </h1>
+						<h2> High Schmidt number </h2>
+						<div class="column" style="float:left; width:60%">
+							<figure>
+							<img width="100%" data-src="../ECCE_Florenz_2019/pictures/high_Sc_experimental.png">
+							<figcaption style="color:black">
+								<small><em>
+									Kück et al.: Analyse des Grenzschichtnahen Stofftransports
+									 an frei aufsteigenden Gasblasen. CIT (2009), 1599-1606
+								</em></small>
+							</figcaption>
+						</figure>
+  					</div>
+					  <div class="column" style="float:right; width:40%">
+							<ul>
+								<li> $O_2$ bubble of $d_b \approx 1 mm$ in water</li>
+								<li> $\text{Sc} \approx 500$, \text{Re} $\approx 250$</li>
+								<li> Hydrodynamic boundary layer: $\delta_h / d_b \propto \text{Re}^{-1/2} \approx 50 \mu m$</li>
+								<li> Species boundary layer: $\delta_c / \delta_h \propto \text{Sc}^{-1/2} \approx 2.5 \mu m$</li>
+							</ul>
+					  </div>
+					</section>
+				</section>
+
+					<section>
+						<h1>Effect of numerical underresolution</h1>
+						<figure>
+						<img width="40%" data-src="../sketches/SGSmodel/problem_linApprox.png">
+							<figcaption style="color:black">
+								<small> <em>
+									Weiner, Bothe: Advanced subgrid-scale modeling for convection-dominated species transport
+									<br/> at fluid interfaces with application to mass transfer from rising bubbles. JCP (2017), 261-289 </em>
+									<br/> red line: linear numerical approximation
+									<br/> blue line: analytical profile
+								</small>
+							</figcaption>
+						</figure>
+						<ul>
+							<li> underpredicted interface gradient
+							<li> overpredicted gradient and value at first face layer
+						</ul>
+						<br/>
+						<br/>
+						<h3> Results in too small transfer rates </h3>
+					</section>
+
+				<section>
+					<section>
+						<h1>Remedy by SGS modeling</h1>
+						<figure>
+							<img width="60%" data-src="../sketches/SGSmodel/numercial_data_correction_cell.png">
+							<figcaption style="color:black">
+								<small> Transformation of constant value </small>
+							</figcaption>
+						</figure>
+						<ul>
+							<li> correct gradients at faces
+							<li> make sure that species amount stays the same
+						</ul>
+						<br/>
+						<br/>
+						<br/>
+						<h2 class="fragment"> How to construct $f(\phi)$?  </h2>
+					</section>
+
+					<section>
+						<h1>SGS model construction</h1>
+						<h3>	Analytical approach limited to </h3>
+						<div class="column" style="float:left; width:60%">
+							<ul>
+								<li> Surfactant sorption
+									<br/>
+									<small><em> Pesci et al.: Computational analysis of single rising
+										bubbles influenced by soluble surfactant. JFM (2018), 709-763 </em></small>
+								<li> Physisorption and simple reactions
+									<br/>
+									<small> <em> Weiner et al.: Experimental and numerical investigation
+										of reactive species transport around a small rising bubble. CES (2019) </em></small>
+							</ul>
+						</div>
+						<div class="column" style="float:right; width:40%">
+							<figure>
+								<img width="60%" data-src="../ECCE_Florenz_2019/pictures/SubstituteProblemSGS.png">
+								<figcaption style="color:black">
+									<small> Substitute problem leading to analytical solution </small>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="column" style="float:right; width:100%">
+							<h3 class="fragment">
+								Machine learning model for complex reactions
+							</h3>
+								<figure class="fragment">
+									<img width="50%" data-src="../basic_pictures/blackboxMachineLearning.png">
+									<figcaption style="color:black">
+										<small> Machine learning as a blackbox </small>
+									</figcaption>
+								</figure>
+							</p>
+							<h3 class="fragment" > But how to get the data?
+							</h3>
+						</div>
+					</section>
+
+					<section id="fragments">
+						<h1>SGS model - Data generation</h1>
+						<div class="column" style="float:left; width:50%">
+							<p class="fragment">
+								DNS of simplified substitute problem
+								<figure class="fragment">
+									<img width="90%" data-src="../ECCE_Florenz_2019/pictures/mesh_view.png">
+									<figcaption style="color:black">
+										<small> Example mesh with Dirichlet boundary conditions </small>
+									</figcaption>
+								</figure>
+							</p>
+						</div>
+						<div class="column" style="float:right; width:50%">
+							<p class="fragment">
+								Parameter variation for one specific bulk reaction
+								<ul class="fragment">
+									<li> $\chi \in [1,3]$
+									<li> Pe $\in [100,200]$
+									<li> Da $\in [0,1]$
+									<li> Only liquid phase
+									<li> constant bubble shape
+									<li> rotational symmetry
+								</ul>
+							</p>
+						</div>
+						<div class="column" style="float:left; width:100%">
+						<p class="fragment">
+							Use data from interfacial region to train machine learning model
+							<br/>
+							Results in an analytical expression $f (\bar{c}, r, \text{Da})$
+						</p>
+					</div>
+					</section>
+				</section>
+
+				<section>
+					<h1>SGS model - Workflow</h1>
+						<figure>
+							<img width="80%" data-src="../ECCE_Florenz_2019/pictures/SGS_MLP_combination.png">
+							<figcaption style="color:black">
+								<small> SGS model based on machine learning for species transport </small>
+							</figcaption>
+						</figure>
+				</section>
+
+				<section>
+					<h1>Validation - 2D</h1>
+						<p>
+							Same setup, but different flow parameters
+							<br/>
+							local Sherwood number: $\text{Sh}_\text{loc} = \frac{\left( \partial_n c \right)_\Sigma}{c_\Sigma} d_b$
+						</p>
+						<div class="column" style="float:left; width:20%"> <br/>
+							<img width="90%" data-src="../ECCE_Florenz_2019/pictures/schematic_bubble.png">
+					</div>
+					<div class="column" style="float:right; width:75%">
+						<figure>
+							<img width="90%" data-src="../ECCE_Florenz_2019/pictures/Sh_loc_polarAngle.png">
+							<figcaption style="color:black">
+								<small>
+									$\chi=1.5, \text{Pe}=1.25 \cdot 10^4, \text{Da} = 0.2$ &emsp; &emsp; &emsp; &emsp; &emsp;
+									$\chi=2.5, \text{Pe}=1.75 \cdot 10^4, \text{Da} = 0.6$
+									<br/> <br/> Local Sherwood number plotted along polar angle
+							</small>
+							</figcaption>
+						</figure>
+				</div>
+				</section>
+
+				<section>
+					<h1>Validation - 3D</h1>
+						<p>
+							Bubble in low Re-regime with physisorption
+							<br/>
+							Prescribed velocity field from Satapathy-Smith solution
+						</p>
+						<div class="column" style="float:left; width:55%">
+							<figure>
+								<img width="100%" data-src="../ECCE_Florenz_2019/pictures/saSm_Sh_loc.png">
+								<figcaption style="color:black">
+									<small> Local Sherwood number plotted along polar angle </small>
+								</figcaption>
+							</figure>
+					</div>
+					<div class="column" style="float:right; width:45%">
+						<ul>
+							<li> $\text{Re} \approx 3.7$, $\text{Pe} \approx 2000$
+								<br/> Out of the substitute ranges!
+							<li> No adjustments needed
+							<li> <b> Radial resolution can be reduced by a factor of 10 </b>
+						</ul>
+				</div>
+				</section>
+
+				<section>
+					<h1>Outlook</h1>
+					<div class="column" style="float:left; width:55%">
+						<ul>
+							<li> Investigate and extend parameter range
+							<ul>
+								<li> Is applicability completely independent of Re and Sc?
+								<li> Include higher reaction rates
+							</ul>
+							<li> Generalization to more complex reaction systems
+								<ul>
+									<li> selective reaction schemes, e.g. $A+B \rightarrow P ; \; A+P \rightarrow S$
+									<li> Can current workflow be used for multiple species?
+								</ul>
+							<li> Application to deformable rising bubbles
+						</ul>
+					</div>
+					<div class="column" style="float:right; width:40%">
+						<figure>
+							<img width="100%" data-src="../ECCE_Florenz_2019/pictures/deformedBubble_selectivity.png">
+							<figcaption style="color:black">
+								<small> <em>
+									Falcone et al.: 3D direct numerical simulations of reactive mass
+									transfer from deformable single bubbles: An analysis of mass transfer
+									coefficients and reaction selectivities. CES (2018), 523-536 </em>
+								</small>
+							</figcaption>
+						</figure>
+					</div>
+				</section>
+
+				<section>
+					<h1>Summary</h1>
+						<div class="column" style="float:left; width:65%">
+							<div class="column" style="float:left; width:40%">
+								<figure>
+									<img width="100%" data-src="../sketches/SGSmodel/problem_linApprox.png">
+								</figure>
+							</div>
+							<div class="column" style="float:right; width:60%">
+								<figure>
+									<img width="100%" data-src="../ECCE_Florenz_2019/pictures/SGS_MLP_combination.png">
+								</figure>
+							</div>
+						</div>
+						<div class="column" style="float:right; width:35%">
+							<figure>
+								<img width="100%" data-src="../ECCE_Florenz_2019/pictures/Sh_loc_polarAngle.png">
+							</figure>
+						</div>
+				</section>
+
+				<section>
+					<h1>Thank you <br/> for your attention!</h1>
+					<h2> Remaining questions? </h2>
+						<p>
+							Dennis Hillenbrand &emsp;&emsp; hillenbrand@mma.tu-darmstadt.de
+							<br/>
+							Andre Weiner &emsp;&emsp; weiner@mma.tu-darmstadt.de
+							<br/>
+							Dieter Bothe &emsp;&emsp; bothe@mma.tu-darmstadt.de
+							<br/>
+							Holger Marschall &emsp;&emsp; marschall@mma.tu-darmstadt.de
+						</p>
+				</section>
+
+				<section>
+					<h1>Machine learning </h1>
+						<h2>
+							Concept of multilayer perceptron
+						</h2>
+						<div class="column" style="float:left; width:55%">
+							<ul>
+								<li> Combination of single perceptrons
+								$y = f \left( \sum_i w_i x_i \right)$
+								<li> Possible activation function: sigmoid
+								$f(z) = \frac{1}{1+e^{-z}}$
+								<li> Optimization of weights $w_i$ such that specified loss (e.g. mean squared error)
+								decreases for given set of data pairs
+								<li> Output of each perceptron is used as input for another perceptron in hidden layers
+								<li> Weights can be efficiently adjusted by backpropagation algorithm
+								<li> Offers much flexibility for constructing the whole network
+							</ul>
+						</div>
+						<div class="column" style="float:right; width:40%">
+							<figure>
+								<img width="70%" data-src="../basic_pictures/single_perceptron.png">
+								<figcaption style="color:black">
+									<small> Single perceptron </small>
+								</figcaption>
+							</figure>
+							<figure>
+							<img width="90%" data-src="../basic_pictures/MLP_layers.png">
+							<figcaption style="color:black">
+								<small> Multilayer perceptron with two hidden layers </small>
+							</figcaption>
+						</figure>
+						</div>
+				</section>
+
+				<section>
+					<h1>Machine learning </h1>
+						<h2>	Settings for multilayer perceptron </h2>
+							<ul>
+								<li> Framework: pyTorch
+								<li> One model with one scalar output for each label
+								<li> Multilayer perceptron with two hidden layers
+								<ul>
+									<li> Input layer: 3 neurons; 1 for each input feature
+									<li> Hidden layers: 16 neurons per layer
+									<li> Output layer: single node (scalar output)
+								</ul>
+								<li> Sigmoid activation function
+								<li> $10^6$ datapoints split into training (75%) and validation data (25%)
+								<li> ADAM optimizer
+								<li> MSE as loss function to optimize
+								<li> Training takes approx. 30 minutes on Nvidia GTX 960 GPU
+							</ul>
+				</section>
+
+				<section>
+					<h1> Choice of input data </h1>
+						<h2>
+							Transformation and sampling
+						</h2>
+						<div class="column" style="float:left; width:50%">
+							<ul>
+								<li> Reduce variance of labels if possible <br/>
+									(e.g. difference to average concentration instead of face concentration value)
+								<li>Transform data to intervals in the range of [0,1]
+								<li> Evaluate feature importance
+								<li> Sample subsets such that each label is nearly uniformly distributed over its range
+							</ul>
+						</div>
+						<div class="column" style="float:right; width:50%">
+							<figure>
+								<img width="100%" data-src="../ECCE_Florenz_2019/pictures/table_localData.png">
+								<figcaption style="color:black">
+									<small> Local data extracted from simulation </small>
+								</figcaption>
+							</figure>
+						</div>
+				</section>
+
+				<section>
+					<h1> Choice of input data </h1>
+						<h2>	Feature importance </h2>
+							<ul>
+								<li> Sequential backward selection, based on k-Nearest-Neighbors and the L2-norm
+								<li> Average concentration the most important feature
+								<li> No improvement after first three features (No local velocity data necessary )
+							</ul>
+							<figure>
+								<img width="70%" data-src="../ECCE_Florenz_2019/pictures/ML_model_score_error.png">
+								<figcaption style="color:black">
+									<small> Outcome of feature selection with SBS for different regions around the interface </small>
+								</figcaption>
+							</figure>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				slideNumber: true,
+				center: true,
+				hash: true,
+
+				margin: 0.1,
+
+				height:"100%",
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+		<style type="text/css">
+	    /* 1. Style header/footer <div> so they are positioned as desired. */
+	    #header {
+	        position: absolute;
+	        top: 0%;
+	        right: 2%;
+	    }
+	    #footer {
+	        position: absolute;
+	        bottom: 0%;
+	        left: 2%;
+					color:black
+	    }
+
+			/* remove borders around images */
+			.reveal section img { background:none; border:none; box-shadow:none; }
+
+		</style>
+
+		<!-- 2. Create hidden header/footer <div> -->
+		<div style="display:none;">
+		    <div id="header">
+					<div id="header">
+							<img width="40%" src="../basic_pictures/mma_logo.gif">
+							<img width="40%" src="../basic_pictures/logo_Spp1740.svg">
+					</div>
+		    <div id="footer">
+					<small>Dennis Hillenbrand | ECCE Florenz, 18.09.2019 | MMA, TU Darmstadt | DFG SPP 1740 </small>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript">
+		    // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+		    var header = $('#header').html();
+		    if ( window.location.search.match( /print-pdf/gi ) ) {
+		        Reveal.addEventListener( 'ready', function( event ) {
+		            $('.slide-background').append(header);
+		        });
+		    }
+		    else {
+		        $('div.reveal').append(header);
+		   }
+		</script>
+
+	</body>
+</html>
