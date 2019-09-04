@@ -1,0 +1,60 @@
+\begin{tikzpicture}
+    \coordinate (y) at (0,-5);
+    \coordinate (x) at (5,0);
+    \draw[<->] (y) node[below] {$y$} -- (0,0) --  (x) node[right] {$x$};
+
+   % error function profile
+   \coordinate (A) at (0,-1);
+   \coordinate (B) at (1.5,-4);
+   \coordinate (C) at (4,-4);
+   \draw[blue,thick] (A) to[out=-80,in=180] (B) -- (C);
+   \node[fill=blue,circle, minimum size = 0.15cm, inner sep=0pt] at (A) {};
+   \draw[] (A) node[left] {$c_{\scriptscriptstyle \Sigma}$};
+
+   % boundary layer thickness
+   \coordinate (C) at (1.5,-4.5);
+   \draw[scale=0.5,domain=0:9,smooth,variable=\y,blue,rotate=-90,samples=300,dashed,thick] plot(\y,{sqrt(\y)});
+   \draw[](C) node[below]{$\delta\left(y\right)$};
+
+   % velocity profile
+   \coordinate (s1) at (1.5,-0.5);
+   \coordinate (s2) at (2.5,-0.5);
+   \coordinate (s3) at (3.5,-0.5);
+   \coordinate (e1) at (1.5,-1.5);
+   \coordinate (e2) at (2.5,-1.5);
+   \coordinate (e3) at (3.5,-1.5);
+   \draw[->,thick] (s1)--(e1);
+   \draw[->,thick] (s2)--(e2);
+   \draw[->,thick] (s3)--(e3);
+   \draw[] (e3) node[right] {$\mathbf{u}=\left(0,v\right)$};
+
+   % bubble
+    myball/.style={shade, ball color=black, circular drop shadow={
+    shadow xshift=0pt, shadow yshift=0pt}};
+   \coordinate (bc) at (-3,-2.5);
+   \shadedraw[shading=ball,ball color=black!30, white] (bc) circle (1);
+
+   % stream line
+    \draw[->] (-3,0) to [out=-90,in=150](-2.6,-1.5);
+    \draw[->] (-2.6,-1.5) to[out=-30,in=90] (-1.95,-2.5);
+    \draw[->] (-1.95,-2.5) to[out=-90,in=30] (-2.6,-3.5);
+    \draw[->] (-2.6,-3.5) to[out=210,in=90] (-3,-5.0);
+
+   % enlarged view
+   \coordinate (rad) at (-2,-2.5);
+   \node[draw=black, minimum size=0.5cm, circle,thick] at (rad) {};
+   \coordinate (up) at (-2,-2.25);
+   \coordinate (down) at (-2,-2.75);
+   \draw[dashed] (up) -- (0,0);
+   \draw[dashed] (down) -- (0,-4.75);
+
+   % addional symbols
+   \coordinate (sig) at (-0.5,-3);
+   \draw[inner sep=0.1em] (sig) node[above left] {$\Sigma$};
+   \draw[] (sig) -- (0,-3.5);
+   \node[] at (-1,-0.5) {$\Omega^d$};
+   \node[] at (1,-0.5) {$\Omega^c$};
+
+
+
+\end{tikzpicture}
