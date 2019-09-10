@@ -14,9 +14,9 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+		<link rel="stylesheet" href="../css/reset.css">
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/white.css" id="theme">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -46,7 +46,6 @@
 					<p style="color:white">
 						Dennis Hillenbrand, Andre Weiner, Dieter Bothe, Holger Marschall
 					</p>
-						<!--<img width="40%" data-src="pictures/SatapathySmith.png"> -->
 				</section>
 
 				<section>
@@ -60,33 +59,33 @@
 						</div>
 						<div class="column" style="float:right; width:30%">
 							<br/>
-							Design of bubble column reactors has significant influence on yield and selectivity
+							Reactor efficiency is significantly influenced by local selectivity
 							<br/>
 							<br/>
-							For predictions local phenomena must be understood
+							For predictions local processes must be understood
 						</div>
 					</section>
 
 					<section>
 						<h1>Multiscale problem </h1>
 						<h2> High Schmidt number </h2>
-						<div class="column" style="float:left; width:60%">
+						<div class="column" style="float:left; width:50%">
 							<figure>
 							<img width="100%" data-src="pictures/high_Sc_experimental.png">
 							<figcaption style="color:black">
 								<small><em>
-									Kück et al.: Analyse des Grenzschichtnahen Stofftransports
-									 an frei aufsteigenden Gasblasen. CIT (2009), 1599-1606
+									Kück et al. (2009). CIT, volume 81, issue 10, p. 1599-1606
 								</em></small>
 							</figcaption>
 						</figure>
   					</div>
-					  <div class="column" style="float:right; width:40%">
+					  <div class="column" style="float:right; width:50%">
 							<ul>
 								<li> $O_2$ bubble of $d_b \approx 1 mm$ in water</li>
-								<li> $\text{Sc} \approx 500$, \text{Re} $\approx 250$</li>
-								<li> Hydrodynamic boundary layer: $\delta_h / d_b \propto \text{Re}^{-1/2} \approx 50 \mu m$</li>
-								<li> Species boundary layer: $\delta_c / \delta_h \propto \text{Sc}^{-1/2} \approx 2.5 \mu m$</li>
+								<li> $\text{Sc} \approx 500$, $\text{Re} \approx 250$</li>
+								<li> <u>Hydrodynamic boundary layer:</u> $\delta_h / d_b \propto \text{Re}^{-1/2} \approx 50 \mu m$ </li>
+								<li> <u>Species boundary layer:</u> $\delta_c / \delta_h \propto \text{Sc}^{-1/2} \approx 2.5 \mu m$ </li>
+								<li> <u>Reactive species boundary layer:</u> $\delta_r / \delta_c \propto \text{E}$ </li>
 							</ul>
 					  </div>
 					</section>
@@ -94,115 +93,106 @@
 
 					<section>
 						<h1>Effect of numerical underresolution</h1>
-						<figure>
-						<img width="40%" data-src="pictures/SGSmodel/problem_linApprox.png">
+						<div class="column" style="float:left; width:40%">
+							<figure>
+							<img width="100%" data-src="pictures/mesh_3D.png">
 							<figcaption style="color:black">
-								<small> <em>
-									Weiner, Bothe: Advanced subgrid-scale modeling for convection-dominated species transport
-									<br/> at fluid interfaces with application to mass transfer from rising bubbles. JCP (2017), 261-289 </em>
-									<br/> red line: linear numerical approximation
-									<br/> blue line: analytical profile
+								<small>
+									Computational mesh for rising bubble
 								</small>
 							</figcaption>
 						</figure>
-						<ul>
-							<li> underpredicted interface gradient
-							<li> overpredicted gradient and value at first face layer
-						</ul>
-						<br/>
-						<br/>
-						<h3> Results in too small transfer rates </h3>
+  					</div>
+					  <div class="column" style="float:right; width:60%">
+							<figure>
+							<img width="80%" data-src="pictures/SGSmodel/problem_linApprox.png">
+								<figcaption style="color:black">
+									<small> <em>
+										Weiner, Bothe (2017). JCP, volume 347, p. 261-289 </em>
+										<br/> red line: linear numerical approximation
+										<br/> blue line: analytical profile
+									</small>
+								</figcaption>
+							</figure>
+							<p>
+								Wrong gradient representation results in too small transfer rates
+							</p>
+						</div>
 					</section>
 
 				<section>
 					<section>
 						<h1>Remedy by SGS modeling</h1>
 						<figure>
-							<img width="60%" data-src="pictures/SGSmodel/numercial_data_correction_cell.png">
+							<img width="50%" data-src="pictures/SGSmodel/numerical_data_correction_cell.png">
 							<figcaption style="color:black">
 								<small> Transformation of constant value </small>
 							</figcaption>
 						</figure>
-						<ul>
-							<li> correct gradients at faces
-							<li> make sure that species amount stays the same
-						</ul>
+						<p>
+							Correct gradients such that species amount corresponds to analytical solution
+						</p>
 						<br/>
-						<br/>
-						<br/>
-						<h2 class="fragment"> How to construct $f(\phi)$?  </h2>
+						<b class="fragment"> How to construct $f(\phi)$? </b>
+						</p>
 					</section>
 
-					<section>
+					<section id="fragments">
 						<h1>SGS model construction</h1>
-						<h3>	Analytical approach limited to </h3>
-						<div class="column" style="float:left; width:60%">
-							<ul>
+						<p>	Analytical approach limited to bubbles with
+							<ul class="fragment"> <small>
 								<li> Surfactant sorption
 									<br/>
-									<small><em> Pesci et al.: Computational analysis of single rising
-										bubbles influenced by soluble surfactant. JFM (2018), 709-763 </em></small>
+									<small><em> Pesci et al. (2018). JFM, volume 856, p. 709-763 </em></small> </li>
 								<li> Physisorption and simple reactions
 									<br/>
-									<small> <em> Weiner et al.: Experimental and numerical investigation
-										of reactive species transport around a small rising bubble. CES (2019) </em></small>
-							</ul>
-						</div>
-						<div class="column" style="float:right; width:40%">
-							<figure>
-								<img width="60%" data-src="pictures/SubstituteProblemSGS.png">
-								<figcaption style="color:black">
-									<small> Substitute problem leading to analytical solution </small>
-								</figcaption>
-							</figure>
-						</div>
-						<div class="column" style="float:right; width:100%">
-							<h3 class="fragment">
-								Machine learning model for complex reactions
-							</h3>
-								<figure class="fragment">
-									<img width="50%" data-src="pictures/blackboxMachineLearning.png">
-									<figcaption style="color:black">
-										<small> Machine learning as a blackbox </small>
-									</figcaption>
-								</figure>
+									<small> <em> Weiner et al. (2019). CES: X, volume 1 </em></small> </li>
+							</small> </ul>
+							<br/>
+							<p class="fragment">Machine learning model for complex reactions
+								<ul class="fragment">
+									<small><em> Weiner et al. (2019). CET, volume 42, issue 7, p. 1349-1356 </em></small>
+								</ul>
 							</p>
-							<h3 class="fragment" > But how to get the data?
-							</h3>
-						</div>
+						<figure class="fragment">
+							<img width="50%" data-src="pictures/blackboxMachineLearning.png">
+							<figcaption style="color:black">
+
+							</figcaption>
+						</figure>
+						<b class="fragment"> But how to get the data? </b>
+						</p>
 					</section>
 
 					<section id="fragments">
 						<h1>SGS model - Data generation</h1>
-						<div class="column" style="float:left; width:50%">
-							<p class="fragment">
+						<div class="column fragment" style="float:left; width:50%">
+							<p>
 								DNS of simplified substitute problem
-								<figure class="fragment">
-									<img width="90%" data-src="pictures/mesh_view.png">
+								<figure>
+									<img width="100%" data-src="pictures/mesh_view.png">
 									<figcaption style="color:black">
 										<small> Example mesh with Dirichlet boundary conditions </small>
 									</figcaption>
 								</figure>
 							</p>
 						</div>
-						<div class="column" style="float:right; width:50%">
-							<p class="fragment">
-								Parameter variation for one specific bulk reaction
-								<ul class="fragment">
-									<li> $\chi \in [1,3]$
-									<li> Pe $\in [100,200]$
-									<li> Da $\in [0,1]$
-									<li> Only liquid phase
-									<li> constant bubble shape
-									<li> rotational symmetry
+						<div class="column fragment" style="float:right; width:50%">
+							<p>
+								Parameter variation for
+								<ul>
+									<li> Constant bubble shape with <br/> $\chi \in [1,3]$
+									<li> 2D case, rotational symmetry
+									<li> Only liquid phase with <br/> Pe $\in [100,200]$
+									<li> Specific bulk reaction with <br/> Da $\in [0,1]$
 								</ul>
 							</p>
 						</div>
 						<div class="column" style="float:left; width:100%">
 						<p class="fragment">
-							Use data from interfacial region to train machine learning model
+							Use data from interfacial region at $\Sigma$ to train machine learning model
 							<br/>
-							Results in an analytical expression $f (\bar{c}, r, \text{Da})$
+							Results in an explicit expression $f (\bar{c}, r, \text{Da})$
 						</p>
 					</div>
 					</section>
@@ -223,22 +213,37 @@
 						<p>
 							Same setup, but different flow parameters
 							<br/>
-							local Sherwood number: $\text{Sh}_\text{loc} = \frac{\left( \partial_n c \right)_\Sigma}{c_\Sigma} d_b$
+							Overall mass transfer: global Sherwood number
+							<br/>
+							$\text{Sh}_\text{gl} = \frac{1}{|A|} \int_A \text{Sh}_\text{loc} \; \text{dA}
+							\text{, where } \text{Sh}_\text{loc} = \frac{\left( \partial_r c \right)_\Sigma}{c_\Sigma} d_b$
+							<br/>
+							$\chi=2.5, \; \text{Pe} = 1.75 \cdot 10^4, \; \text{Da} = 0.6$
 						</p>
-						<div class="column" style="float:left; width:20%"> <br/>
+						<div class="column fragment" style="float:left; width:20%"> <br/>
 							<img width="90%" data-src="pictures/schematic_bubble.png">
 					</div>
-					<div class="column" style="float:right; width:75%">
-						<figure>
-							<img width="90%" data-src="pictures/Sh_loc_polarAngle.png">
-							<figcaption style="color:black">
-								<small>
-									$\chi=1.5, \text{Pe}=1.25 \cdot 10^4, \text{Da} = 0.2$ &emsp; &emsp; &emsp; &emsp; &emsp;
-									$\chi=2.5, \text{Pe}=1.75 \cdot 10^4, \text{Da} = 0.6$
-									<br/> <br/> Local Sherwood number plotted along polar angle
-							</small>
-							</figcaption>
-						</figure>
+					<div class="column" style="float:right; width:80%">
+						<div class="column fragment" style="float:left; width:50%">
+							<figure>
+								<img width="100%" data-src="pictures/Sh_loc_chi25.png">
+								<figcaption style="color:black">
+									<small>
+										Local Sherwood number plotted along polar angle
+								</small>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="column fragment" style="float:right; width:50%">
+							<figure>
+								<img width="100%" data-src="pictures/Sh_gl_convergence_chi25.png">
+								<figcaption style="color:black">
+									<small>
+										Global Sherwood number
+								</small>
+								</figcaption>
+							</figure>
+						</div>
 				</div>
 				</section>
 
@@ -247,9 +252,9 @@
 						<p>
 							Bubble in low Re-regime with physisorption
 							<br/>
-							Prescribed velocity field from Satapathy-Smith solution
+							Hydrodynamics from <em> Satapathy, Smith(1960). JFM, volume 10, part 4, p.561-570 </em>
 						</p>
-						<div class="column" style="float:left; width:55%">
+						<div class="column fragment" style="float:left; width:60%">
 							<figure>
 								<img width="100%" data-src="pictures/saSm_Sh_loc.png">
 								<figcaption style="color:black">
@@ -257,66 +262,45 @@
 								</figcaption>
 							</figure>
 					</div>
-					<div class="column" style="float:right; width:45%">
+					<div class="column fragment" style="float:right; width:40%">
 						<ul>
 							<li> $\text{Re} \approx 3.7$, $\text{Pe} \approx 2000$
-								<br/> Out of the substitute ranges!
-							<li> No adjustments needed
-							<li> <b> Radial resolution can be reduced by a factor of 10 </b>
+								<br/> Outside training data parameter range! </li>
+							<li> Generalization for different flow regimes seem possible </li>
+							<li> No adjustments needed </li>
 						</ul>
+						<b> Resolution can be reduced by a factor of 10 </b>
 				</div>
 				</section>
 
 				<section>
 					<h1>Outlook</h1>
-					<div class="column" style="float:left; width:55%">
+					<div class="column" style="float:left; width:65%">
 						<ul>
-							<li> Investigate and extend parameter range
+							<li> Investigate and extend parameter range </li>
 							<ul>
-								<li> Is applicability completely independent of Re and Sc?
-								<li> Include higher reaction rates
+								<li> Is applicability completely independent of Re and Sc? </li>
+								<li> Include higher reaction rates </li>
 							</ul>
-							<li> Generalization to more complex reaction systems
+							<li> Generalization to more complex reaction systems </li>
 								<ul>
-									<li> selective reaction schemes, e.g. $A+B \rightarrow P ; \; A+P \rightarrow S$
-									<li> Can current workflow be used for multiple species?
+									<li> Competitive reaction schemes, e.g. $A+B \rightarrow P ; \; A+P \rightarrow S$
+										to investigate local selectivity </li>
+									<li> Can current workflow be used for multiple species? </li>
 								</ul>
-							<li> Application to deformable rising bubbles
+							<li> Application to deformable rising bubbles </li>
 						</ul>
 					</div>
-					<div class="column" style="float:right; width:40%">
+					<div class="column" style="float:right; width:35%">
 						<figure>
 							<img width="100%" data-src="pictures/deformedBubble_selectivity.png">
 							<figcaption style="color:black">
 								<small> <em>
-									Falcone et al.: 3D direct numerical simulations of reactive mass
-									transfer from deformable single bubbles: An analysis of mass transfer
-									coefficients and reaction selectivities. CES (2018), 523-536 </em>
+									Falcone et al.(2018). CES, volume 177, 523-536 </em>
 								</small>
 							</figcaption>
 						</figure>
 					</div>
-				</section>
-
-				<section>
-					<h1>Summary</h1>
-						<div class="column" style="float:left; width:65%">
-							<div class="column" style="float:left; width:40%">
-								<figure>
-									<img width="100%" data-src="pictures/SGSmodel/problem_linApprox.png">
-								</figure>
-							</div>
-							<div class="column" style="float:right; width:60%">
-								<figure>
-									<img width="100%" data-src="pictures/SGS_MLP_combination.png">
-								</figure>
-							</div>
-						</div>
-						<div class="column" style="float:right; width:35%">
-							<figure>
-								<img width="100%" data-src="pictures/Sh_loc_polarAngle.png">
-							</figure>
-						</div>
 				</section>
 
 				<section>
@@ -330,36 +314,37 @@
 							Dieter Bothe &emsp;&emsp; bothe@mma.tu-darmstadt.de
 							<br/>
 							Holger Marschall &emsp;&emsp; marschall@mma.tu-darmstadt.de
+							<br/>
+							<br/>
+							More information in <em> Weiner et al. (2019). CET, volume 42, issue 7, p. 1349-1356</em>
 						</p>
+
 				</section>
 
 				<section>
-					<h1>Machine learning </h1>
-						<h2>
-							Concept of multilayer perceptron
-						</h2>
-						<div class="column" style="float:left; width:55%">
+					<h1>Machine learning - MLP </h1>
+						<div class="column" style="float:left; width:70%">
 							<ul>
 								<li> Combination of single perceptrons
-								$y = f \left( \sum_i w_i x_i \right)$
+								$y = f \left( \sum_i w_i x_i \right)$ </li>
 								<li> Possible activation function: sigmoid
-								$f(z) = \frac{1}{1+e^{-z}}$
+								$f(z) = \frac{1}{1+e^{-z}}$ </li>
 								<li> Optimization of weights $w_i$ such that specified loss (e.g. mean squared error)
-								decreases for given set of data pairs
-								<li> Output of each perceptron is used as input for another perceptron in hidden layers
-								<li> Weights can be efficiently adjusted by backpropagation algorithm
-								<li> Offers much flexibility for constructing the whole network
+								decreases for given set of data pairs </li>
+								<li> Output of each perceptron is used as input for another perceptron in hidden layers </li>
+								<li> Weights can be efficiently adjusted by backpropagation algorithm </li>
+								<li> Offers much flexibility for constructing the whole network </li>
 							</ul>
 						</div>
-						<div class="column" style="float:right; width:40%">
+						<div class="column" style="float:right; width:30%">
 							<figure>
-								<img width="70%" data-src="pictures/single_perceptron.png">
+								<img width="80%" data-src="pictures/single_perceptron.png">
 								<figcaption style="color:black">
 									<small> Single perceptron </small>
 								</figcaption>
 							</figure>
 							<figure>
-							<img width="90%" data-src="pictures/MLP_layers.png">
+							<img width="100%" data-src="pictures/MLP_layers.png">
 							<figcaption style="color:black">
 								<small> Multilayer perceptron with two hidden layers </small>
 							</figcaption>
@@ -371,19 +356,19 @@
 					<h1>Machine learning </h1>
 						<h2>	Settings for multilayer perceptron </h2>
 							<ul>
-								<li> Framework: pyTorch
-								<li> One model with one scalar output for each label
-								<li> Multilayer perceptron with two hidden layers
+								<li> Framework: pyTorch </li>
+								<li> One model with one scalar output for each label </li>
+								<li> Multilayer perceptron with two hidden layers </li>
 								<ul>
-									<li> Input layer: 3 neurons; 1 for each input feature
-									<li> Hidden layers: 16 neurons per layer
-									<li> Output layer: single node (scalar output)
+									<li> Input layer: 3 neurons; 1 for each input feature </li>
+									<li> Hidden layers: 16 neurons per layer </li>
+									<li> Output layer: single node (scalar output) </li>
 								</ul>
-								<li> Sigmoid activation function
-								<li> $10^6$ datapoints split into training (75%) and validation data (25%)
-								<li> ADAM optimizer
-								<li> MSE as loss function to optimize
-								<li> Training takes approx. 30 minutes on Nvidia GTX 960 GPU
+								<li> Sigmoid activation function </li>
+								<li> $10^6$ datapoints split into training (75%) and validation data (25%) </li>
+								<li> ADAM optimizer </li>
+								<li> MSE as loss function to optimize </li>
+								<li> Training takes approx. 30 minutes on Nvidia GTX 960 GPU </li>
 							</ul>
 				</section>
 
@@ -395,10 +380,10 @@
 						<div class="column" style="float:left; width:50%">
 							<ul>
 								<li> Reduce variance of labels if possible <br/>
-									(e.g. difference to average concentration instead of face concentration value)
-								<li>Transform data to intervals in the range of [0,1]
-								<li> Evaluate feature importance
-								<li> Sample subsets such that each label is nearly uniformly distributed over its range
+									(e.g. difference to average concentration instead of face concentration value) </li>
+								<li>Transform data to intervals in the range of [0,1] </li>
+								<li> Evaluate feature importance </li>
+								<li> Sample subsets such that each label is nearly uniformly distributed over its range </li>
 							</ul>
 						</div>
 						<div class="column" style="float:right; width:50%">
@@ -413,11 +398,10 @@
 
 				<section>
 					<h1> Choice of input data </h1>
-						<h2>	Feature importance </h2>
 							<ul>
-								<li> Sequential backward selection, based on k-Nearest-Neighbors and the L2-norm
-								<li> Average concentration the most important feature
-								<li> No improvement after first three features (No local velocity data necessary )
+								<li> Sequential backward selection, based on k-Nearest-Neighbors and the L2-norm </li>
+								<li> Average concentration the most important feature </li>
+								<li> No improvement after first three features (No local velocity data necessary ) </li>
 							</ul>
 							<figure>
 								<img width="70%" data-src="pictures/ML_model_score_error.png">
@@ -431,7 +415,7 @@
 
 		</div>
 
-		<script src="js/reveal.js"></script>
+		<script src="../js/reveal.js"></script>
 
 		<script>
 
@@ -445,19 +429,19 @@
 
 				margin: 0.1,
 
-				height:"100%",
+				/*height:"100%",*/
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true },
-					{ src: 'plugin/search/search.js', async: true },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{src: 'plugin/math/math.js', async: true }
+					{ src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../plugin/highlight/highlight.js', async: true },
+					{ src: '../plugin/search/search.js', async: true },
+					{ src: '../plugin/zoom-js/zoom.js', async: true },
+					{ src: '../plugin/notes/notes.js', async: true },
+					{src: '../plugin/math/math.js', async: true }
 				]
 			});
 
@@ -487,7 +471,7 @@
 		    <div id="header">
 					<div id="header">
 							<img width="40%" src="pictures/mma_logo.gif">
-							<img width="40%" src="pictures/logo_Spp1740.svg">
+							<img width="26%" src="pictures/logo_SPP1740.png">
 					</div>
 		    <div id="footer">
 					<small>Dennis Hillenbrand | ECCE Florenz, 18.09.2019 | MMA, TU Darmstadt | DFG SPP 1740 </small>
