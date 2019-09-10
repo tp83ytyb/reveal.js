@@ -19,14 +19,14 @@
 		<link rel="stylesheet" href="../css/theme/white.css" id="theme">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+		<link rel="stylesheet" href="../lib/css/monokai.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 
@@ -92,6 +92,7 @@
 				</section>
 
 					<section>
+						<br/>
 						<h1>Effect of numerical underresolution</h1>
 						<div class="column" style="float:left; width:40%">
 							<figure>
@@ -164,9 +165,9 @@
 						</p>
 					</section>
 
-					<section id="fragments">
+					<section id="fragments" >
 						<h1>SGS model - Data generation</h1>
-						<div class="column fragment" style="float:left; width:50%">
+						<div class="column fragment" style="float:left; width:40%">
 							<p>
 								DNS of simplified substitute problem
 								<figure>
@@ -177,28 +178,27 @@
 								</figure>
 							</p>
 						</div>
-						<div class="column fragment" style="float:right; width:50%">
+						<div class="column fragment" style="float:right; width:60%">
 							<p>
 								Parameter variation for
 								<ul>
-									<li> Constant bubble shape with <br/> $\chi \in [1,3]$
+									<li> Constant bubble shape with $\chi \in [1,3]$
 									<li> 2D case, rotational symmetry
-									<li> Only liquid phase with <br/> Pe $\in [100,200]$
-									<li> Specific bulk reaction with <br/> Da $\in [0,1]$
+									<li> Only liquid phase with Pe $\in [100,200]$
+									<li> Specific bulk reaction with Da $\in [0,1]$
 								</ul>
 							</p>
 						</div>
-						<div class="column" style="float:left; width:100%">
 						<p class="fragment">
 							Use data from interfacial region at $\Sigma$ to train machine learning model
 							<br/>
 							Results in an explicit expression $f (\bar{c}, r, \text{Da})$
 						</p>
-					</div>
 					</section>
 				</section>
 
 				<section>
+					<br/>
 					<h1>SGS model - Workflow</h1>
 						<figure>
 							<img width="80%" data-src="pictures/SGS_MLP_combination.png">
@@ -209,6 +209,7 @@
 				</section>
 
 				<section>
+					<br/>
 					<h1>Validation - 2D</h1>
 						<p>
 							Same setup, but different flow parameters
@@ -248,6 +249,7 @@
 				</section>
 
 				<section>
+					<br/>
 					<h1>Validation - 3D</h1>
 						<p>
 							Bubble in low Re-regime with physisorption
@@ -427,7 +429,7 @@
 				center: true,
 				hash: true,
 
-				margin: 0.1,
+				margin: 0.15,
 
 				/*height:"100%",*/
 
@@ -452,7 +454,7 @@
 	    #header {
 	        position: absolute;
 	        top: 0%;
-	        right: 2%;
+	        right: -10%;
 	    }
 	    #footer {
 	        position: absolute;
@@ -470,8 +472,8 @@
 		<div style="display:none;">
 		    <div id="header">
 					<div id="header">
-							<img width="40%" src="pictures/mma_logo.gif">
-							<img width="26%" src="pictures/logo_SPP1740.png">
+							<img width="30%" src="pictures/mma_logo.gif">
+							<img width="20%" src="pictures/logo_SPP1740.png">
 					</div>
 		    <div id="footer">
 					<small>Dennis Hillenbrand | ECCE Florenz, 18.09.2019 | MMA, TU Darmstadt | DFG SPP 1740 </small>
