@@ -485,7 +485,7 @@ body {
   overflow: visible;
   z-index: 1;
   text-align: center;
-  font-size: 32px;
+  font-size: 28px;
   -webkit-perspective: 600px;
           perspective: 600px;
   -webkit-perspective-origin: 50% 40%;
