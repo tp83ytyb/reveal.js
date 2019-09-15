@@ -44,7 +44,7 @@
 				<section data-background-image="pictures/SatapathySmith.png">
 					<h1 style="color:white">Advection-dominated reactive species transport at fluid interfaces via data-driven Subgrid-scale modeling</h1>
 					<p style="color:white">
-						Dennis Hillenbrand, Andre Weiner, Dieter Bothe, Holger Marschall TESTTEST
+						Dennis Hillenbrand, Andre Weiner, Dieter Bothe, Holger Marschall
 					</p>
 				</section>
 
@@ -74,7 +74,7 @@
 							<img width="100%" data-src="pictures/high_Sc_experimental.png">
 							<figcaption style="color:black">
 								<small><em>
-									Kück et al. (2009). CIT, volume 81, issue 10, p. 1599-1606
+									Kück, Schlüter, Räbiger. (2009). CIT, volume 81, issue 10, p. 1599-1606
 								</em></small>
 							</figcaption>
 						</figure>
@@ -83,9 +83,10 @@
 							<ul>
 								<li> $O_2$ bubble of $d_b \approx 1 mm$ in water</li>
 								<li> $\text{Sc} \approx 500$, $\text{Re} \approx 250$</li>
-								<li> <u>Hydrodynamic boundary layer:</u> $\delta_h / d_b \propto \text{Re}^{-1/2} \approx 50 \mu m$ </li>
-								<li> <u>Species boundary layer:</u> $\delta_c / \delta_h \propto \text{Sc}^{-1/2} \approx 2.5 \mu m$ </li>
-								<li> <u>Reactive species boundary layer:</u> $\delta_r / \delta_c \propto \text{E}$ </li>
+								<li> <u> Boundary layer width:
+								<li> Hydrodynamics: $\delta_h / d_b \propto \text{Re}^{-1/2} \approx 50 \mu m$ </li>
+								<li> Species: $\delta_c / \delta_h \propto \text{Sc}^{-1/2} \approx 2.5 \mu m$ </li>
+								<li> Reactive species: $\delta_r / \delta_c \propto \text{E} \approy 1 \mu m$ </li>
 							</ul>
 					  </div>
 					</section>
@@ -144,15 +145,15 @@
 							<ul class="fragment"> <small>
 								<li> Surfactant sorption
 									<br/>
-									<small><em> Pesci et al. (2018). JFM, volume 856, p. 709-763 </em></small> </li>
+									<small><em> Pesci, Weiner, Bothe (2018). JFM, volume 856, p. 709-763 </em></small> </li>
 								<li> Physisorption and simple reactions
 									<br/>
-									<small> <em> Weiner et al. (2019). CES: X, volume 1 </em></small> </li>
+									<small> <em> Weiner, Timmermannb, Pesci, Grewe, Hoffmann, Schlüter, Bothe (2019). CES: X, volume 1 </em></small> </li>
 							</small> </ul>
 							<br/>
 							<p class="fragment">Machine learning model for complex reactions
 								<ul class="fragment">
-									<small><em> Weiner et al. (2019). CET, volume 42, issue 7, p. 1349-1356 </em></small>
+									<small><em> Weiner, Hillenbrand, Marschall, Bothe (2019). CET, volume 42, issue 7, p. 1349-1356 </em></small>
 								</ul>
 							</p>
 						<figure class="fragment">
@@ -182,9 +183,9 @@
 							<p>
 								Parameter variation for
 								<ul>
-									<li> Constant bubble shape with $\chi \in [1,3]$
 									<li> 2D case, rotational symmetry
-									<li> Only liquid phase with Pe $\in [100,200]$
+									<li> Constant bubble shape with $\chi \in [1,3]$
+									<li> Only liquid phase with Re $\in [100,200]$
 									<li> Specific bulk reaction with Da $\in [0,1]$
 								</ul>
 							</p>
@@ -199,27 +200,16 @@
 
 				<section>
 					<br/>
-					<h1>SGS model - Workflow</h1>
-						<figure>
-							<img width="80%" data-src="pictures/SGS_MLP_combination.png">
-							<figcaption style="color:black">
-								<small> SGS model based on machine learning for species transport </small>
-							</figcaption>
-						</figure>
-				</section>
-
-				<section>
-					<br/>
 					<h1>Validation - 2D</h1>
 						<p>
 							Same setup, but different flow parameters
+							<br/>
+							$\chi=2.5, \; \text{Pe} = 1.75 \cdot 10^4, \; \text{Da} = 0.6$
 							<br/>
 							Overall mass transfer: global Sherwood number
 							<br/>
 							$\text{Sh}_\text{gl} = \frac{1}{|A|} \int_A \text{Sh}_\text{loc} \; \text{dA}
 							\text{, where } \text{Sh}_\text{loc} = \frac{\left( \partial_r c \right)_\Sigma}{c_\Sigma} d_b$
-							<br/>
-							$\chi=2.5, \; \text{Pe} = 1.75 \cdot 10^4, \; \text{Da} = 0.6$
 						</p>
 						<div class="column fragment" style="float:left; width:20%"> <br/>
 							<img width="90%" data-src="pictures/schematic_bubble.png">
@@ -298,7 +288,7 @@
 							<img width="100%" data-src="pictures/deformedBubble_selectivity.png">
 							<figcaption style="color:black">
 								<small> <em>
-									Falcone et al.(2018). CES, volume 177, 523-536 </em>
+									Falcone, Bothe, Marschall (2018). CES, volume 177, 523-536 </em>
 								</small>
 							</figcaption>
 						</figure>
@@ -318,9 +308,21 @@
 							Holger Marschall &emsp;&emsp; marschall@mma.tu-darmstadt.de
 							<br/>
 							<br/>
-							More information in <em> Weiner et al. (2019). CET, volume 42, issue 7, p. 1349-1356</em>
+							More information in <em> Weiner, Hillenbrand, Marschall, Bothe (2019). CET, volume 42, issue 7, p. 1349-1356</em>
 						</p>
 
+				</section>
+
+
+				<section>
+					<br/>
+					<h1>SGS model - Workflow</h1>
+						<figure>
+							<img width="80%" data-src="pictures/SGS_MLP_combination.png">
+							<figcaption style="color:black">
+								<small> SGS model based on machine learning for species transport </small>
+							</figcaption>
+						</figure>
 				</section>
 
 				<section>
