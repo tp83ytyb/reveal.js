@@ -66,10 +66,11 @@
 						</div>
 					</section>
 
-					<section>
+					<section id="fragments">
 						<h1>Multiscale problem </h1>
 						<h2> High Schmidt number </h2>
 						<div class="column" style="float:left; width:60%">
+							<br/>
 							<figure>
 							<img width="100%" data-src="pictures/high_Sc_experimental.png">
 							<figcaption style="color:black">
@@ -81,12 +82,14 @@
   					</div>
 					  <div class="column" style="float:right; width:40%">
 							<ul>
-								<li> $O_2$ bubble of $d_b \approx 1 mm$ in water</li>
-								<li> $\text{Sc} \approx 500$, $\text{Re} \approx 250$</li>
+								<li> $O_2$ bubble of $d_b \approx 1 mm$ in water:
+								<br/> $\text{Sc} \approx 500$, $\text{Re} \approx 250$</li>
 								<li> <u> Boundary layer width: </u>
-								<li> Hydrodynamics: $\delta_h / d_b \propto \text{Re}^{-1/2} \approx 50 \mu m$ </li>
-								<li> Species: <br/> $\delta_c / \delta_h \propto \text{Sc}^{-1/2} \approx 2.5 \mu m$ </li>
-								<li> Reactive species: $\delta_r / \delta_c \propto \text{E} \approx 1 \mu m$ </li>
+								<ul>
+									<li> Hydrodynamics: $\delta_h / d_b \propto \text{Re}^{-1/2} \approx 50 \mu m$ </li>
+									<li> Species: <br/> $\delta_c / \delta_h \propto \text{Sc}^{-1/2} \approx 2.5 \mu m$ </li>
+									<li> Reactive species: $\delta_r / \delta_c \propto \text{E} \approx 1 \mu m$ </li>
+								</ul>
 							</ul>
 					  </div>
 					</section>
@@ -95,7 +98,7 @@
 					<section>
 						<br/>
 						<h1>Effect of numerical underresolution</h1>
-						<div class="column" style="float:left; width:40%">
+						<div class="column" style="float:left; width:50%">
 							<figure>
 							<img width="100%" data-src="pictures/mesh_3D.png">
 							<figcaption style="color:black">
@@ -105,9 +108,9 @@
 							</figcaption>
 						</figure>
   					</div>
-					  <div class="column" style="float:right; width:60%">
+					  <div class="column" style="float:right; width:50%">
 							<figure>
-							<img width="80%" data-src="pictures/SGSmodel/problem_linApprox.png">
+							<img width="70%" data-src="pictures/SGSmodel/problem_linApprox.png">
 								<figcaption style="color:black">
 									<small> <em>
 										Weiner, Bothe (2017). JCP, volume 347, p. 261-289 </em>
@@ -132,24 +135,23 @@
 							</figcaption>
 						</figure>
 						<p>
-							Correct gradients such that species amount corresponds to analytical solution
-						</p>
-						<br/>
-						<b class="fragment"> How to construct $f(\phi)$? </b>
+							Transform constant into non-linear profile such that species amount is preserved
+							<br/>
+							<b class="fragment"> How to construct $f(\phi)$? </b>
 						</p>
 					</section>
 
 					<section id="fragments">
 						<h1>SGS model construction</h1>
 						<p>	Analytical approach limited to bubbles with
-							<ul class="fragment"> <small>
+							<ul class="fragment">
 								<li> Surfactant sorption
 									<br/>
 									<em> Pesci, Weiner, Bothe (2018). JFM, volume 856, p. 709-763 </em> </li>
 								<li> Physisorption and simple reactions
 									<br/>
-									<em> Weiner, Timmermannb, Pesci, Grewe, Hoffmann, Schlüter, Bothe (2019). CES: X, volume 1 </em> </li>
-							</small> </ul>
+									<em> Weiner, Timmermann, Pesci, Grewe, Hoffmann, Schlüter, Bothe (2019). CES: X, volume 1 </em> </li>
+							</ul>
 							<br/>
 							<p class="fragment">Machine learning model for complex reactions
 								<ul class="fragment">
@@ -166,9 +168,9 @@
 						</p>
 					</section>
 
-					<section id="fragments" >
+					<section>
 						<h1>SGS model - Data generation</h1>
-						<div class="column fragment" style="float:left; width:45%">
+						<div class="column fragment" style="float:left; width:55%">
 							<p>
 								DNS of simplified substitute problem
 								<figure>
@@ -179,14 +181,14 @@
 								</figure>
 							</p>
 						</div>
-						<div class="column fragment" style="float:right; width:55%">
+						<div class="column fragment" style="float:right; width:45%">
 							<p>
 								Parameter variation for
 								<ul>
 									<li> 2D case, rotational symmetry
-									<li> Constant bubble shape with $\chi \in [1,3]$
-									<li> Only liquid phase with Re $\in [100,200]$
-									<li> Specific bulk reaction with Da $\in [0,1]$
+									<li> Constant bubble shape with <br/> $\chi \in [1,3]$
+									<li> Only liquid phase with <br/> Re $\in [100,200]$
+									<li> Specific bulk reaction with <br/> Da $\in [0,1]$
 								</ul>
 							</p>
 						</div>
@@ -201,21 +203,20 @@
 				<section>
 					<br/>
 					<h1>Validation - 2D</h1>
-						<p>
-							Same setup, but different flow parameters
+						<ul>
+							<li> Same setup, but different flow parameters:
 							<br/>
-							$\chi=2.5, \; \text{Pe} = 1.75 \cdot 10^4, \; \text{Da} = 0.6$
-							<br/>
-							Overall mass transfer: global Sherwood number
+							$\chi=2.5, \; \text{Re} = 175, \; \text{Da} = 0.6$ </li>
+							<li> Overall mass transfer: global Sherwood number
 							<br/>
 							$\text{Sh}_\text{gl} = \frac{1}{|A|} \int_A \text{Sh}_\text{loc} \; \text{dA}
 							\text{, where } \text{Sh}_\text{loc} = \frac{\left( \partial_r c \right)_\Sigma}{c_\Sigma} d_b$
-						</p>
-						<div class="column fragment" style="float:left; width:20%"> <br/>
-							<img width="90%" data-src="pictures/schematic_bubble.png">
+						</ul>
+						<div class="column fragment" style="float:left; width:10%"> <br/>
+							<img width="100%" data-src="pictures/schematic_bubble.png">
 					</div>
-					<div class="column" style="float:right; width:80%">
-						<div class="column fragment" style="float:left; width:50%">
+					<div class="column" style="float:right; width:90%">
+						<div class="column fragment" style="float:left; width:60%">
 							<figure>
 								<img width="100%" data-src="pictures/Sh_loc_chi25.png">
 								<figcaption style="color:black">
@@ -225,12 +226,12 @@
 								</figcaption>
 							</figure>
 						</div>
-						<div class="column fragment" style="float:right; width:50%">
+						<div class="column fragment" style="float:right; width:40%">
 							<figure>
 								<img width="100%" data-src="pictures/Sh_gl_convergence_chi25.png">
 								<figcaption style="color:black">
 									<small>
-										Global Sherwood number
+										Global Sherwood number - mesh convergence
 								</small>
 								</figcaption>
 							</figure>
@@ -241,10 +242,10 @@
 				<section>
 					<br/>
 					<h1>Validation - 3D</h1>
-						<p>
-							Bubble in low Re-regime with physisorption
-							<br/>
-							Hydrodynamics from <em> Satapathy, Smith(1960). JFM, volume 10, part 4, p.561-570 </em>
+						<ul>
+							<li> Bubble in low Re-regime ($Re \approx 4$) with physisorption </li>
+							<li> Hydrodynamics from 
+								<em> Satapathy, Smith(1960). JFM, volume 10, part 4, p.561-570 </em> </li>
 						</p>
 						<div class="column fragment" style="float:left; width:60%">
 							<figure>
@@ -254,9 +255,10 @@
 								</figcaption>
 							</figure>
 					</div>
-					<div class="column fragment" style="float:right; width:40%">
+					<div class="column fragment" style="float:right; width:40%"> 
+						<br/>
 						<ul>
-							<li> $\text{Re} \approx 3.7$, $\text{Pe} \approx 2000$
+							<li> $\text{Re} \approx 4$, $\text{Sc} = 100$
 								<br/> Outside training data parameter range! </li>
 							<li> Generalization for different flow regimes seem possible </li>
 							<li> No adjustments needed </li>
@@ -271,14 +273,13 @@
 						<ul>
 							<li> Investigate and extend parameter range </li>
 							<ul>
-								<li> Is applicability completely independent of Re and Sc? </li>
-								<li> Include higher reaction rates </li>
+								<li> How general is the SGS-ML model? </li>
+								<li> Include higher reaction rates </li>	
 							</ul>
 							<li> Generalization to more complex reaction systems </li>
 								<ul>
-									<li> Competitive reaction schemes, e.g. $A+B \rightarrow P ; \; A+P \rightarrow S$
-										to investigate local selectivity </li>
 									<li> Can current workflow be used for multiple species? </li>
+									<li> Use competitive reaction schemes to investigate local selectivity </li>
 								</ul>
 							<li> Application to deformable rising bubbles </li>
 						</ul>
@@ -308,7 +309,8 @@
 							Holger Marschall &emsp;&emsp; marschall@mma.tu-darmstadt.de
 							<br/>
 							<br/>
-							More information in <em> Weiner, Hillenbrand, Marschall, Bothe (2019). CET, volume 42, issue 7, p. 1349-1356</em>
+							More information in <br/>
+							<em> Weiner, Hillenbrand, Marschall, Bothe (2019). CET, volume 42, issue 7, p. 1349-1356</em>
 						</p>
 
 				</section>
