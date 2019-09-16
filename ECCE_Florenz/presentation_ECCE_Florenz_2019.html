@@ -69,7 +69,7 @@
 					<section id="fragments">
 						<h1>Multiscale problem </h1>
 						<h2> High Schmidt number </h2>
-						<div class="column" style="float:left; width:60%">
+						<div class="column fragment" style="float:left; width:60%">
 							<br/>
 							<figure>
 							<img width="100%" data-src="pictures/high_Sc_experimental.png">
@@ -81,7 +81,7 @@
 						</figure>
   					</div>
 					  <div class="column" style="float:right; width:40%">
-							<ul>
+							<ul class="fragment">
 								<li> $O_2$ bubble of $d_b \approx 1 mm$ in water:
 								<br/> $\text{Sc} \approx 500$, $\text{Re} \approx 250$</li>
 								<li> <u> Boundary layer width: </u>
@@ -110,7 +110,7 @@
   					</div>
 					  <div class="column" style="float:right; width:50%">
 							<figure>
-							<img width="70%" data-src="pictures/SGSmodel/problem_linApprox.png">
+							<img width="80%" data-src="pictures/SGSmodel/problem_linApprox.png">
 								<figcaption style="color:black">
 									<small> <em>
 										Weiner, Bothe (2017). JCP, volume 347, p. 261-289 </em>
@@ -120,7 +120,7 @@
 								</figcaption>
 							</figure>
 							<p>
-								Wrong gradient representation results in too small transfer rates
+								Wrong representation results in too small transfer rates
 							</p>
 						</div>
 					</section>
@@ -143,7 +143,7 @@
 
 					<section id="fragments">
 						<h1>SGS model construction</h1>
-						<p>	Analytical approach limited to bubbles with
+						<p> <b> Analytical approach limited to bubbles with </b>
 							<ul class="fragment">
 								<li> Surfactant sorption
 									<br/>
@@ -153,9 +153,9 @@
 									<em> Weiner, Timmermann, Pesci, Grewe, Hoffmann, Schlüter, Bothe (2019). CES: X, volume 1 </em> </li>
 							</ul>
 							<br/>
-							<p class="fragment">Machine learning model for complex reactions
+							<p class="fragment"> <b> Machine learning model for complex reactions </b>
 								<ul class="fragment">
-									<small><em> Weiner, Hillenbrand, Marschall, Bothe (2019). CET, volume 42, issue 7, p. 1349-1356 </em></small>
+									<em> Weiner, Hillenbrand, Marschall, Bothe (2019). CET, volume 42, issue 7, p. 1349-1356 </em>
 								</ul>
 							</p>
 						<figure class="fragment">
@@ -212,10 +212,10 @@
 							$\text{Sh}_\text{gl} = \frac{1}{|A|} \int_A \text{Sh}_\text{loc} \; \text{dA}
 							\text{, where } \text{Sh}_\text{loc} = \frac{\left( \partial_r c \right)_\Sigma}{c_\Sigma} d_b$
 						</ul>
-						<div class="column fragment" style="float:left; width:10%"> <br/>
+						<div class="column fragment" style="float:left; width:15%"> <br/>
 							<img width="100%" data-src="pictures/schematic_bubble.png">
 					</div>
-					<div class="column" style="float:right; width:90%">
+					<div class="column" style="float:right; width:85%">
 						<div class="column fragment" style="float:left; width:60%">
 							<figure>
 								<img width="100%" data-src="pictures/Sh_loc_chi25.png">
@@ -246,7 +246,7 @@
 							<li> Bubble in low Re-regime ($Re \approx 4$) with physisorption </li>
 							<li> Hydrodynamics from 
 								<em> Satapathy, Smith(1960). JFM, volume 10, part 4, p.561-570 </em> </li>
-						</p>
+						</ul>
 						<div class="column fragment" style="float:left; width:60%">
 							<figure>
 								<img width="100%" data-src="pictures/saSm_Sh_loc.png">
