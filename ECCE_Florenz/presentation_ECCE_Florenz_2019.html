@@ -69,18 +69,7 @@
 					<section id="fragments"> <br/>
 						<h1>Multiscale problem </h1>
 						<h2> High Schmidt number </h2>
-						<div class="column fragment" style="float:left; width:60%">
-							<br/>
-							<figure>
-							<img width="100%" data-src="pictures/high_Sc_experimental.png">
-							<figcaption style="color:black">
-								<small><em>
-									Kück, Schlüter, Räbiger. (2009). CIT, volume 81, issue 10, p. 1599-1606
-								</em></small>
-							</figcaption>
-						</figure>
-  					</div>
-					  <div class="column" style="float:right; width:40%">
+						 <div class="column" style="float:left; width:50%">
 							<ul class="fragment">
 								<li> $O_2$ bubble of $d_b \approx 1 mm$ in water:
 								<br/> $\text{Sc} \approx 500$, $\text{Re} \approx 250$</li>
@@ -92,6 +81,17 @@
 								</ul>
 							</ul>
 					  </div>
+					<div class="column fragment" style="float:right; width:50%">
+							<br/>
+							<figure>
+							<img width="100%" data-src="pictures/high_Sc_experimental.png">
+							<figcaption style="color:black">
+								<small><em>
+									Kück, Schlüter, Räbiger. (2009). CIT, volume 81, issue 10, p. 1599-1606
+								</em></small>
+							</figcaption>
+						</figure>
+  					</div>
 					</section>
 				</section>
 
@@ -100,7 +100,7 @@
 						<h1>Effect of numerical underresolution</h1>
 						<div class="column" style="float:left; width:50%">
 							<figure>
-							<img width="100%" data-src="pictures/mesh_3D.png">
+							<img width="90%" data-src="pictures/mesh_3D.png">
 							<figcaption style="color:black">
 								<small>
 									Computational mesh for rising bubble
@@ -188,7 +188,7 @@
 									<li> 2D case, rotational symmetry
 									<li> Constant bubble shape with <br/> $\chi \in [1,3]$
 									<li> Only liquid phase with <br/> Re $\in [100,200]$
-									<li> Specific bulk reaction with <br/> Da $\in [0,1]$
+									<li> Specific bulk reaction with <br/> Da $\in [0,1]$ and $\text{Sc}=100$
 								</ul>
 							</p>
 						</div>
@@ -249,21 +249,20 @@
 							<li> Hydrodynamics from 
 								<em> Satapathy, Smith(1960). JFM, volume 10, part 4, p.561-570 </em> </li>
 						</ul>
-						<div class="column fragment" style="float:left; width:60%">
+						<div class="column fragment" style="float:left; width:65%">
 							<figure>
-								<img width="100%" data-src="pictures/saSm_Sh_loc.png">
+								<img width="95%" data-src="pictures/saSm_Sh_loc.png">
 								<figcaption style="color:black">
 									<small> Local Sherwood number plotted along polar angle </small>
 								</figcaption>
 							</figure>
 					</div>
-					<div class="column fragment" style="float:right; width:40%"> 
+					<div class="column fragment" style="float:right; width:35%"> 
 						<br/>
 						<ul>
-							<li> $\text{Re} \approx 4$, $\text{Sc} = 100$
+							<li> $\text{Re} \approx 4$, $\text{Sc} = 500$
 								<br/> Outside training data parameter range! </li>
 							<li> Generalization for different flow regimes seem possible </li>
-							<li> No adjustments needed </li>
 						</ul>
 						<b> Resolution can be reduced by a factor of 10 </b>
 				</div>
