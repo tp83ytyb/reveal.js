@@ -45,7 +45,7 @@
 					<h2>Entwicklung und Anwendung einer Methode zur Direkten
 						Numerischen Simulation reaktiver Transportprozesse in Blasensystemen</h2>
 					<p>
-						Dennis Hillenbrand, Dieter Bothe (?), Holger Marschall
+						Dennis Hillenbrand, Holger Marschall
 					</p>
 					<img width="30%" src="pictures/mma_logo.gif">
 					<img width="20%" src="pictures/logo_SPP1740.jpg">
@@ -53,52 +53,55 @@
 				</section>
 
 				<section>
-					<h1>Previous work - selectivity</h1>
-					<p>
-						Competitive reaction scheme for single rising bubbles (Manuel)
-						with 'refined-mesh approach'
-					</p>
-				</section>
-
-				<section>
-					<h1>Previous work - SGS model </h1>
-					<ul>
-						<li> Combination of SGS model with maschine learning </li>
-						<li> Save mesh resolution in species boundary layer </li>
-						<li> Proof of concept for simple reaction scheme (decay reaction) </li>
-						<li> Extension to competitive-reactive scheme (ongoing work)</li>
-					</ul>
-				</section>
-
-				<section>
-					<h1> Now: Taylor bubbles </h1>
+					<h1> Structure SPP 1740 </h1>
 					<figure>
-					<img width="80%" data-src="pictures/TB_snapshot.png">
-					<figcaption style="color:black">
-						<small>
-						</small>
-					</figcaption>
+						<img width="80%" data-src="pictures/structureSPP.png">
+					</figure>
+				</section>
+
+				<section>
+					<h1> Scientific relevance </h1>
+					<div class="column" style="float:left; width:60%">
+					<figure>
+						<img width="100%" data-src="pictures/reviewPaper.png">
+					</figure>
+				</div>
+				<div class="column" style="float:right; width:40%">
+					<blockquote>
+						&ldquo;The reviewed literature identifies no clear window of operating
+						conditions and hydrodynamic parameters at which Taylor flow offers the highest mass transfer&rdquo;
+					</blockquote>
+				<!-- <figure>
+					<img width="80%" data-src="pictures/reviewPaperComplexMassTransfer.png">
+				</figure>
+				<figure>
+					<img width="80%" data-src="pictures/reviewPaperDifferentResults.png">
+				</figure>
+				<figure>
+					<img width="80%" data-src="pictures/reviewPaperLimitedInformation.png">
+				</figure>
+				<figure>
+					<img width="80%" data-src="pictures/reviewPaperNumSimulations.png">
+				</figure> -->
+			</div>
 				</section>
 
 					<section>
-						<h1>Why Taylor bubbles</h1>
-						<div class="column" style="float:left; width:50%">
+						<h1> Industrial relevance </h1>
+						<div class="column" style="float:left; width:70%">
 							<ul>
-								<li> Industrial importance for microfluidic applications </li>
+								<li> Used for microfluidic applications </li>
 								<li> High mass and heat transfer rates </li>
-								<li> Controllable experiments for scientific research </li>
-									<ul>
-										<li> Rise velocity almost independent from bubble volume </li>
-										<li> All possible wake structures can be obtained </li>
-									</ul>
+								<li> High mixing rates within liquid slugs </li>
+								<li> Controllable flow characteristics </li>
 							</ul>
 						</div>
-						<div class="column" style="float:left; width:50%">
+						<div class="column" style="float:left; width:30%">
 							<figure>
-							<img width="100%" data-src="pictures/3D_streamlines.png">
+							<img width="100%" data-src="pictures/industrialAppTB.png">
 							<figcaption style="color:black">
 								<small>
-									3D study of mass transfer around Taylor bubble
+									TU Delft (Moulijn et al.)
 								</small>
 							</figcaption>
 						</div>
@@ -107,19 +110,19 @@
 					<section>
 						<h1> Numerical challenges</h1>
 						<div class="column" style="float:left; width:70%">
-							<ul>
-								<li> Resolution of very thin film region </li>
-								<li> Resolution of species boundary layer </li>
-								<li> Resolution of wake structures </li>
-								<li> Bubble deformation </li>
 							<br/>
-							<b> Simplified setup to investigate important parameter range: </b>
-									<li> Rotational symmetry </li>
-									<li> One-phase simulation </li>
-								</ul>
+							<ul>
+								<li> Bubble deformation </li>
+								<li  class="fragment" data-fragment-index="1"> Resolution of very thin film region </li>
+								<li class="fragment" data-fragment-index="1"> Resolution of species boundary layer </li>
+								<li class="fragment" data-fragment-index="1"> Resolution of wake structures </li>
+							</ul>
+							<p class="fragment" data-fragment-index="2">
+								Results in very fine meshes with many cells!
+							</p>
 						</div>
 						<div class="column" style="float:left; width:30%">
-							<figure>
+							<figure class="fragment" data-fragment-index="2">
 							<img width="70%" data-src="pictures/mesh_TB.png">
 							<figcaption style="color:black">
 								<small>
@@ -130,73 +133,133 @@
 					</section>
 
 					<section>
-						<h1> Goal - experimental validation </h1>
-						<div class="column" style="float:left; width:50%">
-							<ul>
-								<li> Initialize bubble shape from experiments </li>
-								<li> Validate hydrodynamics for steady-state flows </li>
-									<ul>
-										<li> Use of symmetric wake structures </li>
-										<li> Compare rise velocity and velocity structures</li>
-										<li> Influence of surfactants? </li>
-									</ul>
-							</ul>
+						<h1> Reduced complexity </h1>
+						<div class="column" style="float:left; width:70%">
+							<br/>
+							<p class="fragment" data-fragment-index="1">
+								Experiments and simulations show rotational symmetric hydrodynamics for $Re < 200$
+								<br/>
+								Highly resolved simulations possible for quasi-2D domains
+							</p>
+							<p class="fragment" data-fragment-index="3">
+								<b>BUT</b> : Rotational symmetry not accessible in interface tracking simulations!
+							</p>
 						</div>
-						<div class="column" style="float:left; width:50%">
-							<figure>
-							<img width="100%" data-src="pictures/wake_comparison.png">
+						<div class="column" style="float:left; width:30%">
+							<figure class="fragment" data-fragment-index="2">
+							<img width="100%" data-src="pictures/3D_streamlines.png">
 							<figcaption style="color:black">
 								<small>
-									Boundary condition influence on wake
+									3D study of mass transfer around Taylor bubble
 								</small>
 							</figcaption>
 						</div>
 					</section>
 
 					<section>
-						<h1> Goal - Selectivity investigation </h1>
-						<div class="column" style="float:left; width:50%">
-							<ul>
-								<li> Competitive consecutive schemes <br/>
-									$A + B \rightarrow P$ </br> $A+P \rightarrow S$
-								</li>
-									<ul>
-										<li> Realistic and important parameter ranges for reaction constants </li>
-										<li> Influence of wake structure on local selectivity </li>
-									</ul>
-							</ul>
+						<h1> Three Goals for Taylor bubbles </h1>
+								<h3> 1. Validation against experiments</h3>
+								<h3> 2. Investigation of local selectivity </h3>
+								<h3> 3. Mass transfer correlations </h3>
+					</section>
+
+					<section>
+						<h1> 1. Experimental validation </h1>
+						<div class="column" style="float:left; width:66%">
+							<div class="column" style="float:left; width:60%">
+								<figure>
+								<img width="35%" data-src="pictures/hydrodynamicsExperimental.png">
+								<figcaption style="color:black">
+									<small>
+										Experimental results, TUHH
+									</small>
+								</figcaption>
+							</div>
+							<div class="column" style="float:right; width:35%">
+								<h1>&xrarr;	</h1>
+								<p>
+									bubble shape
+								</p>
+								<br/> <br/> <br/> <br/> <br/>
+								<h1>&xharr;	</h1>
+								<p>
+									rise velocity and flow patterns
+								</p>
+							</div>
 						</div>
-						<div class="column" style="float:right; width:50%">
+						<div class="column" style="float:left; width:33%">
+							<figure>
+							<img width="25%" data-src="pictures/wake_comparison.png">
+							<figcaption style="color:black">
+								<small>
+									Numerical simulation
+								</small>
+							</figcaption>
+						</div>
+					</section>
+
+					<section  id="fragments">
+						<h1> 2. Local selectivity </h1>
+							<p>
+								Competitive consecutive schemes
+								$$A + B \xrightarrow{k_1} P$$
+								$$A+P \xrightarrow{k_2} S$$
+								Realistic and important parameter ranges for reaction ratios
+									$\kappa = \frac{k_2}{k_1}$
+							</p>
+							<p class="fragment">
+							Important parameter: local selectivity
+							$$Sel_{P,A} = \frac{r_1 - r_2}{r_1+r_2} = \frac{c_B - \kappa c_P}{c_B+\kappa c_P}$$
+						</p>
+					</section>
+
+					<section id="fragments">
+						<h1> 2. Local selectivity </h1>
+						<div class="column" style="float:left; width:40%">
+							<p>
+								Influence of wake structure on local selectivity
+								<br/> <br/>
+								Side product is mainly produces along vortex structure
+								<br/>
+								Product selectivity is reduced along vortex structures
+							</p>
+						</div>
+						<div class="column" style="float:right; width:60%">
 							<figure>
 							<img width="100%" data-src="pictures/Selectivity_Da1_kappa.png">
 							<figcaption style="color:black">
 								<small>
-									Selectivity for different reaction rate ratios
+									Selectivity for $Da_1 = 1$
 								</small>
 							</figcaption>
 						</div>
 					</section>
 
 					<section>
-						<h1> Goal - mass transfer correlations </h1>
+						<h1> 3. Mass transfer correlations </h1>
 							<ul>
 								<li> Correlations available in literature for physisorption </li>
-								<ul>
+								<ul class="fragment">
 									<li> Mainly for smaller channels $d \le 2 mm$ </li>
 									<li> Mainly applicable in a short range of characteristic parameters </li>
 									<li> Taylor flow can reduce mass transfer due to saturation in the film between bubble and wall </li>
 								</ul>
-								<li> No correlation for enhancement by reaction in bulk phase found </li>
+								<li class="fragment"> <b>No</b> correlation for enhancement by reaction in bulk phase found </li>
 							</ul>
 					</section>
 
 					<section>
 						<h1>Next steps</h1>
 						<ul>
-							<li> Validate code against experimental results (TUHH) </li>
-							<li> Investigate validity of simplifying assumptions (rotational symmetry, one-phase, constant bubble shape) </li>
-							<li> Use highly resolved meshes in boundary layer and wake </li>
-							<li> Investigate local fields in bubble wake </li>
+							<li> Validate hydrodynamics against experimental results (TUHH) </li>
+							<li> Estimate parameter range with simplified setup </li>
+							<li> Two-phase simulations with </li>
+							<ul>
+								<li> highly resolved meshes </li>
+								<li> maschine learning SGS model </li>
+							</ul>
+							<li> Gain insight into local selectivity fields </li>
+							<li> Obtain mass transfer correlations including reactions </li>
 						</ul>
 					</section>
 
