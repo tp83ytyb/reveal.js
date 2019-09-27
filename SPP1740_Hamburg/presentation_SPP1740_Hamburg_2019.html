@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Development and Application of a Direct Numerical Method for Reactive Transport Processes in Bubble Systems/title>
+		<title>Development and Application of a Direct Numerical Method for Reactive Transport Processes in Bubble Systems</title>
 
-		<meta name="description" content="SPP 1740 annual meeting Hamburg 2019">
+		<meta name="description" content="Development and Application of a Direct Numerical Method for Reactive Transport Processes in Bubble Systems">
 		<meta name="author" content="Dennis Hillenbrand">
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -41,17 +41,12 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section>
-					<h2>Development and Application of a Direct Numerical Method 
-						for Reactive Transport Processes in Bubble Systems</h2>
-					<p>
-						Dennis Hillenbrand, Holger Marschall
+				<section data-background-image="pictures/SatapathySmith.png">
+					<h1 style="color:white">Advection-dominated reactive species transport at fluid interfaces via data-driven Subgrid-scale modeling</h1>
+					<p style="color:white">
+						Dennis Hillenbrand, Andre Weiner, Dieter Bothe, Holger Marschall
 					</p>
-					<img width="30%" src="pictures/mma_logo.gif">
-					<img width="20%" src="pictures/logo_SPP1740.jpg">
-
 				</section>
-
 				<section>
 					<h1> Structure SPP 1740 </h1>
 					<figure>
@@ -71,19 +66,7 @@
 						&ldquo;The reviewed literature identifies no clear window of operating
 						conditions and hydrodynamic parameters at which Taylor flow offers the highest mass transfer&rdquo;
 					</blockquote>
-				<!-- <figure>
-					<img width="80%" data-src="pictures/reviewPaperComplexMassTransfer.png">
-				</figure>
-				<figure>
-					<img width="80%" data-src="pictures/reviewPaperDifferentResults.png">
-				</figure>
-				<figure>
-					<img width="80%" data-src="pictures/reviewPaperLimitedInformation.png">
-				</figure>
-				<figure>
-					<img width="80%" data-src="pictures/reviewPaperNumSimulations.png">
-				</figure> -->
-			</div>
+				</div>
 				</section>
 
 					<section>
@@ -207,7 +190,7 @@
 								Competitive consecutive schemes
 								$$A + B \xrightarrow{k_1} P$$
 								$$A+P \xrightarrow{k_2} S$$
-								Variable parameters for reaction rates are 
+								Variable parameters for reaction rates are
 								$Da_1 =  \frac{k_1 d}{U}$ and
 								$\kappa = \frac{k_2}{k_1}$
 							</p>
@@ -276,10 +259,13 @@
 					</p>
 				</section>
 
+			</div>
+
+		</div>
+
 		<script src="../js/reveal.js"></script>
 
 		<script>
-
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				controls: true,
@@ -287,13 +273,9 @@
 				slideNumber: true,
 				center: true,
 				hash: true,
-
-				margin: 0.15,
-
+				margin: 0.05,
 				/*height:"100%",*/
-
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
-
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
@@ -305,7 +287,6 @@
 					{src: '../plugin/math/math.js', async: true }
 				]
 			});
-
 		</script>
 
 		<style type="text/css">
@@ -321,10 +302,8 @@
 	        left: 2%;
 					color:black
 	    }
-
 			/* remove borders around images */
 			.reveal section img { background:none; border:none; box-shadow:none; }
-
 		</style>
 
 		<!-- 2. Create hidden header/footer <div> -->
@@ -335,7 +314,7 @@
 							<img width="20%" src="pictures/logo_SPP1740.jpg">
 					</div>
 		    <div id="footer">
-					<small>Dennis Hillenbrand | SPP 1740 annual meeting Hamburg, 27.09.2019 | MMA, TU Darmstadt </small>
+					<small>Dennis Hillenbrand | SPP 1740 annual meeting, 27.09.2019 | MMA, TU Darmstadt </small>
 				</div>
 			</div>
 		</div>
